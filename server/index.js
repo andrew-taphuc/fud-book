@@ -26,19 +26,21 @@ app.use("/assests", express.static(path.join(__dirname, 'public/assets')));
 /*FILE STORAGE*/
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "public/assets");
+        cb(null, "public/assets");//handle error
     },
     filename: function (req, file, cb){
         cb(null, file.originalname);
     }
 });
-const upload = multer({ storage});
+const upload = multer({ storage}); // middleware to upload file
 
 /*MONGO SETUP*/
 const PORT = process.env.PORT || 6001;
 mongoose
     .connect(process.env.MONGO_URL)
+    // if connect is successful
     .then(() => {
-        app.listen(POST, (0 => console.log(`Server PORT: ${PORT}`)))
-    });
-    .catch((error) => con)
+        app.listen(PORT, () => console.log(`Server PORT: ${PORT}`));
+    })
+    // if connect unsuccessfully
+    .catch((error) => console.log(`${error} did not connect`));
