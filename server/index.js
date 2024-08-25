@@ -42,5 +42,5 @@ mongoose
     .then(() => {
         app.listen(PORT, () => console.log(`Server PORT: ${PORT}`));
     })
-    // if connect unsuccessfully
+    // if connect unsuccessfully, catch error
     .catch((error) => console.log(`${error} did not connect`));
